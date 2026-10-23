@@ -1,0 +1,79 @@
+
+.simple-layout {
+  --audio-icon-size: 27px;
+  --audio-icon-gap: 12px;
+  --simple-audio-right-inset: 14px;
+  --simple-status-width: 280px;
+  --simple-layer-width: 535px;
+  --simple-media-width: 430px;
+  --simple-time-width: 255px;
+  --simple-row-height: 112px;
+  --simple-row-gap: 12px;
+  --simple-layer-font: 36px;
+  --simple-media-font: 28px;
+  --simple-time-font: 30px;
+  --simple-header-height: 158px;
+  --simple-main-top: 234px;
+  --simple-main-height: 536px;
+  --simple-active-height: 382px;
+  --simple-second-top: 824px;
+  --simple-second-height: 194px;
+  --simple-card-fill: linear-gradient(135deg,#152331,#101a24);
+}
+.simple-layout .header { height:var(--simple-header-height); grid-template-columns:500px 230px 340px minmax(0,1fr); padding-top:24px; padding-bottom:22px; }
+.simple-layout .project-group { justify-content:space-between; }
+.simple-layout .project-name { font-size:34px; line-height:38px; }
+.simple-layout .output-group { padding:0; align-self:stretch; height:auto; }
+.simple-layout .fps-status { display:none; }
+.simple-layout .clock-group { display:flex; flex-direction:column; justify-content:center; border:0; }
+.simple-layout .clock { font-size:61px; line-height:73px; }
+.simple-layout .clock-date { font-size:23px; line-height:30px; }
+.simple-layout .countdown { font-size:78px; line-height:86px; }
+.simple-layout .countdown-source { font-size:22px; }
+.simple-layout .countdown-label { font-size:21px; line-height:28px; }
+.simple-layout .transport { height:34px; padding:0; gap:8px; border:0; border-radius:0; background:none; }
+.simple-layout #main-transport { top:190px; }
+.simple-layout #second-transport { position:absolute; left:var(--page-padding); top:782px; width:calc(var(--canvas-width) - 2 * var(--page-padding)); }
+.simple-layout .transport-label { font-size:24px; color:var(--muted); }
+.simple-layout .transport-name { font-size:25px; }
+.simple-main { position:absolute; left:var(--page-padding); top:var(--simple-main-top); width:calc(var(--canvas-width) - 2 * var(--page-padding)); height:var(--simple-main-height); padding:12px 16px; }
+.simple-layout .simple-active-zone,.simple-layout .simple-next-zone,.simple-layout .simple-second-zone { display:grid; grid-template-columns:var(--simple-status-width) minmax(0,1fr); gap:10px; --font-factor:1; }
+.simple-active-zone { height:var(--simple-active-height); --accent:var(--active-color); --media-text:#c4f2da; }
+.simple-next-zone { height:116px; margin-top:12px; --accent:var(--next-color); --media-text:var(--next-color); }
+.simple-layout .status-column { border:0; background:none; padding:20px 20px 12px 10px; border-radius:0; gap:12px; }
+.simple-layout .simple-next-zone .status-column { padding-top:18px; gap:0; }
+.simple-layout .badge { font-size:14px; height:37px; }
+.simple-layout .play-mode-group { margin-top:14px; }
+.simple-layout .play-mode { margin-top:6px; padding:0; width:auto; height:auto; display:block; border:0; background:none; font-size:21px; line-height:28px; white-space:normal; font-weight:500; }
+.simple-layout .simple-next-zone .play-mode-group { margin-top:10px; }
+.simple-layout .simple-next-zone .play-mode { font-size:17px; line-height:21px; color:var(--muted); }
+.simple-layout .rows { padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:var(--simple-card-fill); }
+.simple-layout .active-rows { gap:var(--simple-row-gap); }
+.simple-layout .layer-row { grid-template-columns:var(--simple-layer-width) var(--simple-media-width) var(--simple-time-width) var(--simple-time-width); column-gap:9px; height:var(--simple-row-height); border:0; border-radius:0; background:none; padding:8px 9px; align-items:center; }
+.simple-layout .layer-name { font-size:var(--simple-layer-font); line-height:42px; padding-top:0; }
+.simple-layout .layer-name.is-long { font-size:30px; }
+.simple-layout .layer-field > .field-label,.simple-layout .media-field > .field-label { display:none; }
+.simple-layout .layer-meta { padding-top:7px; gap:15px; }
+.simple-layout .layer-type { font-size:12px; padding:2px 10px; line-height:16px; }
+.simple-layout .brightness { gap:9px; }
+.simple-layout .brightness-value { font-size:13px; }
+.simple-layout .value-box { margin-top:4px; padding:6px 0; height:auto; min-height:43px; border-radius:0; background:none; font-size:var(--simple-media-font); line-height:34px; }
+.simple-layout .media-box { color:var(--media-text); padding-right:var(--simple-audio-right-inset); }
+.simple-layout .time-box { font-size:var(--simple-time-font); line-height:36px; }
+.simple-layout .field-label { font-size:11px; line-height:15px; }
+.simple-layout .elapsed-field,.simple-layout .remaining-field,.simple-layout .duration-field { align-self:center; text-align:center; }
+
+.simple-layout .elapsed-field,.simple-layout .duration-field { text-align:left; }
+.simple-layout .elapsed-field .time-box,.simple-layout .duration-field .time-box { text-align:left; padding-left:0; padding-right:0; }
+.simple-layout .remaining-field .value-box { background:none; color:var(--timer-color); }
+.simple-layout .simple-next-zone .rows { background:linear-gradient(135deg,#242820,#191e1c); border-color:#424532; }
+.simple-layout .simple-next-zone .layer-row { height:98px; }
+.simple-layout .simple-next-zone .layer-name { color:var(--next-color); font-size:32px; }
+.simple-layout .simple-next-zone .duration-field { grid-column:3; }
+.simple-layout .duration-field .time-box { color:var(--next-color); }
+.simple-layout .simple-second-zone { position:absolute; left:var(--page-padding); top:var(--simple-second-top); width:calc(var(--canvas-width) - 2 * var(--page-padding)); height:var(--simple-second-height); padding:17px 16px; --accent:var(--second-color); --media-text:#c0d8ff; }
+.simple-layout .simple-second-zone .rows { background:linear-gradient(135deg,#14253a,#102030); border-color:#344c6a; }
+.simple-layout .simple-second-zone .layer-row { height:140px; }
+.simple-layout .simple-second-zone .active-badge { background:linear-gradient(135deg,#95baff,#729dde); color:#132b48; }
+.simple-layout .simple-second-zone .layer-name { font-size:33px; }
+.simple-layout .empty-state { font-size:25px; padding-top:22px; }

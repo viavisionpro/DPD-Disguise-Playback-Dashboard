@@ -1,0 +1,101 @@
+{
+  "_README": "Disguise Playback Dashboard v0.4.13: Advanced + Simple. Default Director: 127.0.0.1; transports: default and second; dashboard bind: 0.0.0.0. JSON does not allow // comments, so help is stored in _help fields.",
+  "designer": {
+    "_help_host": "CHANGE ME: IP address or DNS name of any machine in the running Designer session. Director IP is the safest choice.",
+    "host": "127.0.0.1",
+    "_help_port": "Designer HTTP API port from d3Manager > Machine Settings > Advanced Network Configuration. Default is 80; value 0 disables the API.",
+    "port": 80,
+    "_help_discovery": "When true, the bridge asks the configured machine who the Director is and reconnects to it.",
+    "auto_discover_director": true,
+    "_help_override": "Normally leave empty. If the reported Director hostname cannot be resolved from this laptop, put the Director IP here.",
+    "director_host_override": "",
+    "connect_timeout_seconds": 5,
+    "reconnect_initial_seconds": 1,
+    "reconnect_max_seconds": 15
+  },
+  "server": {
+    "_help_bind": "0.0.0.0 = listen on all local interfaces (default), so other devices on the local network can open DPD. Use 127.0.0.1 for access only from this computer.",
+    "bind": "0.0.0.0",
+    "port": 8080
+  },
+  "timelines": {
+    "main": {
+      "_help_transport": "CHANGE ME: exact Transport Manager name that drives the main timeline. Use default for the built-in transport.",
+      "transport": "default",
+      "_help_expression": "Advanced fallback: an exact Designer Python resource expression. Leave empty in normal use.",
+      "transport_expression": "",
+      "max_active_layers": 3,
+      "_help_priority": "Optional exact layer names, highest priority first. Listed layers become the top rows/countdown source.",
+      "layer_priority": []
+    },
+    "aux": {
+      "_help_transport": "Exact Transport Manager name for the second timeline. The approved compact design shows one active row.",
+      "transport": "second",
+      "transport_expression": "",
+      "max_active_layers": 1,
+      "layer_priority": []
+    }
+  },
+  "updates": {
+    "_help": "Milliseconds for Live Update subscriptions. 100 ms is responsive without making the browser talk to Designer directly.",
+    "transport_ms": 100,
+    "active_layers_ms": 100,
+    "video_details_ms": 500,
+    "video_timing_ms": 250,
+    "layers_ms": 1000,
+    "sections_ms": 1000,
+    "schedule_ms": 1000,
+    "annotations_seconds": 10,
+    "brightness_ms": 100,
+    "outputs_ms": 100,
+    "fps_ms": 1000,
+    "fps_average_samples": 60,
+    "media_metadata_ms": 1000,
+    "_help_outputs": "LocalState.directorState().output is subscribed independently from transport and media timing. 0=FADE DOWN, 1=FADE UP, 2=HOLD.",
+    "_help_fps": "Actual FPS on the connected Director via MonitoringManager. fps_average_samples=60 requests Designer's average of its latest 60 measurements, not 60 browser polls. Raw Actual/1 is logged and shown only in diagnostics. fps_ms=1000 controls subscription frequency. No cap at 60 FPS.",
+    "_help_media_metadata": "Optional independent stream for Simple Next Duration. Reads VideoClip.transportDuration as Designer timecode, matched to the scheduled clip by resource UID. Unknown durations stay blank; section length is never used instead.",
+    "media_audio_ms": 1000,
+    "preview_brightness_ms": 1000,
+    "_help_audio": "Independent read-only VideoClip.hasAudio metadata for Active/Previous/Next. The icon reports an embedded track, not audible output or file volume.",
+    "_help_preview_brightness": "Reads the saved brightness sequence at the mapped media entry beat, before activation. Expression/Sockpuppet/external control stays unknown. Active brightness still uses the existing runtime subscription.",
+    "_help_future_layers": "layers_ms controls the read-only catalogue of all graphical leaves of each selected track. Next compares future layer and media entry beats chronologically; this catalogue never creates Active rows."
+  },
+  "logic": {
+    "_help_brightness": "Compatibility threshold used only when an adapter supplies brightness; this build uses TrackPlayer.activeLayers for current graphical layers.",
+    "minimum_brightness": 0.001,
+    "stale_after_seconds": 3,
+    "annotation_time_tolerance": 0.01,
+    "_help_labels": "Default shows only SECTION NN. Optional sources: note, cue, index, number. Add them in the desired priority only if you intentionally want annotation text.",
+    "section_label_priority": [
+      "number"
+    ],
+    "section_metadata_enabled": true,
+    "_help_section_metadata": "Read TC, MIDI, CUE (shown as OSC), and notes at Current/Next Section breaks. Refresh runs independently from the timing WebSocket."
+  },
+  "ui": {
+    "_help_project_name": "Normally leave empty: the dashboard reads the project name from /api/session/status/project. Set text here only to override it.",
+    "project_name": "",
+    "browser_poll_ms": 100,
+    "blink_at_seconds": 10,
+    "_help_countdown_smoothing": "Normally leave these values unchanged. Identical API samples no longer restart the timer; small higher samples are rejected as jitter, while a large difference or transport seek resynchronises immediately.",
+    "countdown_sample_epsilon_seconds": 0.005,
+    "countdown_hard_resync_seconds": 1.5,
+    "countdown_seek_threshold_seconds": 0.75,
+    "_help_live_threshold": "A remaining duration at or above this value is treated as an open-ended/live source.",
+    "live_threshold_seconds": 86400,
+    "default_fps": 25,
+    "date_locale": "ru-RU",
+    "browser_request_timeout_ms": 2000,
+    "audio_indicator_position": "media-suffix",
+    "_help_audio_indicator": "Approved placement: media-suffix (speaker at the right edge inside Media, filename ellipsis before it). Other options: media-prefix, layer-meta, media-label, off. Applies to all rows on both pages; only hasAudio=true shows the icon.",
+    "next_active_animation": "lift",
+    "_help_next_active_animation": "Entry AND exit of every displayed ACTIVE layer: off, fade, lift, accent, transfer. D has both previews and engine/counter diagnostics. Preference is shared by both views in this browser. Reduce motion disables effects unless explicitly allowed in D. No playback control."
+  },
+  "logging": {
+    "level": "INFO",
+    "_help_state_snapshot": "At INFO level, write derived Previous/Active/Next and timers this often. Set 0 to disable.",
+    "state_snapshot_seconds": 10,
+    "max_bytes": 5000000,
+    "backup_count": 3
+  }
+}

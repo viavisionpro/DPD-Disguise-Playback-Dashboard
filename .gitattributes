@@ -1,0 +1,8 @@
+# Consistent source files across Windows and macOS.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.zip binary

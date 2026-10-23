@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" data-view="advanced">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=0.4.13">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=0.4.13">
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48 64x64" href="favicon.ico?v=0.4.13">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=0.4.13">
+  <title>Disguise Playback Dashboard — v0.4.13</title>
+  <link rel="stylesheet" href="dashboard.css?v=0.4.13">
+  <script defer src="dashboard-motion.js?v=0.4.13"></script>
+  <script defer src="dashboard-ui.js?v=0.4.13"></script>
+  <script defer src="dashboard.js?v=0.4.13"></script>
+</head>
+<body>
+<main id="canvas" class="dashboard" aria-label="Disguise Playback Dashboard">
+  <header class="header panel">
+    <div class="project-group">
+      <div class="branding-line">
+
+        <svg class="brand-logo" viewBox="795 399 2508 1365" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+          <g transform="matrix(2.533203,0,0,2.533203,743,346)">
+          <path d="M255.5,22.117C364.598,22.862 426.425,79.746 434.897,87.063C504.638,147.294 515.444,246.575 515.845,255.477C516.879,278.43 534.776,399.51 439.308,487.29C431.327,494.629 387.778,534.672 319.557,550.762C281.241,559.799 274.7,558.694 144.5,558.663C22.924,558.633 22.178,558.905 21.679,557.436C21.372,556.533 21.503,24.302 21.61,23.527C21.986,20.785 23.836,22.286 255.5,22.117ZM357.343,265.104C343.443,265.104 332.159,276.389 332.159,290.289C332.159,304.189 343.443,315.473 357.343,315.473C371.243,315.473 382.528,304.189 382.528,290.289C382.528,276.389 371.243,265.104 357.343,265.104ZM318.929,291.203C318.954,289.53 318.694,289.561 317.17,288.818C189.886,226.764 190.325,226.141 179.224,220.837C176.044,219.317 177.096,231.36 177.096,232.5C177.1,359.43 176.909,360.377 178.345,360.463C178.427,360.468 271.268,315.033 318.929,291.203Z" fill="currentColor"/>
+          <path d="M694.598,21.756C742.253,24.469 832.989,9.315 922.785,84.117C933.899,93.375 993.159,142.741 1006.1,244.588C1035.262,474.096 866.25,548.14 773.481,557.238C744.318,560.098 588.236,558.474 587.879,558.117C587.242,557.48 586.522,403.828 586.825,402.572C587.178,401.103 587.63,400.86 605.514,399.832C610.907,399.522 638.955,397.909 671.514,385.542C703.455,373.409 711.331,366.064 724.782,357.963C742.102,347.532 763.631,325.334 763.986,324.915C804.02,277.61 804.094,259.009 812.013,230.366C813.869,223.652 813.121,183.294 812.802,181.446C811.353,173.043 804.354,90.778 722.567,38.39C697.167,22.121 695.054,24.862 694.193,22.403L694.598,21.756Z" fill="currentColor"/>
+          <path d="M536.044,337.477C538.355,323.561 537.763,314.429 537.765,308.5C537.78,270.341 539.465,229.012 514.594,166.462C494.989,117.157 463.849,86.908 463.497,86.502C438.531,57.763 390.041,30.223 369.638,24.183C358.471,20.878 376.385,21.974 394.504,22.012C597.764,22.435 597.914,19.76 631.548,25.136C739.192,42.34 807.659,136.246 790.638,230.534C785.204,260.638 767.185,287.115 765.417,289.437C754.959,303.173 755.739,306.243 730.09,328.024C657.384,389.767 570.298,379.289 567.765,380.896C566.28,381.839 566.217,409.969 566.211,412.5C566.079,471.929 567.821,555.859 566.382,557.403C564.87,559.026 380.536,557.584 370.503,558.185C370.254,558.2 360.615,558.777 368.193,556.085C376.59,553.103 414.42,536.399 443.273,511.248C509.254,453.733 528.637,394.043 536.044,337.477Z" fill="currentColor"/>
+          </g>
+        </svg>
+        <div class="brand" aria-label="Disguise Playback Dashboard"><span class="brand-label">Disguise</span><strong>Playback Dashboard</strong></div>
+      </div>
+      <div id="project-name" class="project-name">—</div>
+    </div>
+    <div class="output-group" aria-label="Director output status">
+      <div class="output-state-group">
+        <span class="output-label">OUTPUT</span>
+        <span id="output-status" class="output-status is-unknown" role="status" aria-live="polite">NO DATA</span>
+      </div>
+      <span id="director-fps" class="fps-status" title="Average actual Director FPS">— FPS</span>
+    </div>
+    <div class="clock-group">
+      <div class="clock"><span id="clock-hours">00</span><span id="clock-colon">:</span><span id="clock-minutes">00</span></div>
+      <div id="clock-date" class="clock-date">—</div>
+    </div>
+    <div class="countdown-group">
+      <div class="countdown-line"><span class="countdown-label">TIME<br>REMAINING</span><span id="countdown" class="countdown">--:--</span></div>
+      <div id="countdown-source" class="countdown-source">—</div>
+    </div>
+  </header>
+  <section id="main-transport" class="transport panel" aria-label="Main transport"></section>
+  <section class="summary-section previous panel" aria-label="Previous">
+    <aside class="summary-status">PREVIOUS</aside><div id="previous-row" class="rows summary-rows"></div>
+  </section>
+  <section id="main-active" class="active-section primary panel" aria-label="Active layers on the main transport">
+    <aside class="status-column"><span id="on-air" class="badge on-air">● ON AIR</span><span class="badge active-badge">ACTIVE</span><div class="play-mode-group"><span class="field-label">PLAY MODE</span><span id="main-play-mode" class="badge play-mode">—</span></div></aside>
+    <div id="main-active-rows" class="rows active-rows"></div>
+  </section>
+  <section class="summary-section next panel" aria-label="Next">
+    <aside class="summary-status"><span class="badge next-badge">NEXT</span></aside><div id="next-row" class="rows summary-rows"></div>
+  </section>
+
+  <section class="secondary panel" aria-label="Second transport">
+    <div id="second-transport" class="transport"></div>
+    <div class="active-section secondary-body">
+      <aside class="status-column"><span class="badge active-badge">ACTIVE</span><div class="play-mode-group"><span class="field-label">PLAY MODE</span><span id="second-play-mode" class="badge play-mode">—</span></div></aside>
+      <div id="second-active-rows" class="rows active-rows"></div>
+    </div>
+  </section>
+  <footer class="footer">
+    <button id="status-button" class="status-button" type="button" title="Open diagnostics (D)">
+      <span id="status-dot" class="status-dot"></span><span id="status-text">STARTING</span>
+    </button>
+    <span id="status-detail" class="status-detail">Connecting to API…</span>
+    <nav class="footer-links" aria-label="Dashboard views and tools">
+      <span id="footer-version">v0.4.13</span><span class="footer-separator" aria-hidden="true">·</span>
+      <a id="view-advanced" class="view-link is-current" aria-current="page" href="dashboard.html">ADVANCED</a>
+      <span class="footer-separator" aria-hidden="true">/</span>
+      <a id="view-simple" class="view-link"  href="simple.html">SIMPLE</a>
+      <span class="footer-separator" aria-hidden="true">·</span>
+      <a id="diagnostics-link" class="footer-link" href="#diagnostics" aria-haspopup="dialog" title="Open diagnostics (D)">DIAGNOSTICS <kbd class="footer-key">D</kbd></a>
+      <span class="footer-separator" aria-hidden="true">·</span>
+
+      <a class="author-link" href="https://viavision.pro" target="_blank" rel="noopener noreferrer">viavision.pro</a>
+
+    </nav>
+  </footer>
+  <aside id="diagnostics" class="diagnostics" role="dialog" aria-label="Connection and data diagnostics" aria-hidden="true">
+    <header><div><div class="diagnostics-kicker">DIAGNOSTICS</div><h2>Connection &amp; data streams</h2></div><button id="diagnostics-close" type="button" aria-label="Close">×</button></header>
+    <section class="handoff-controls" aria-label="Active layer animation">
+      <div class="handoff-setting">
+        <label for="handoff-animation">Animation</label>
+        <select id="handoff-animation" title="Animation for layers entering and leaving Active">
+          <option value="off">Off</option>
+          <option value="fade">Soft fade</option>
+          <option value="lift" selected>Lift</option>
+          <option value="accent">Accent</option>
+          <option value="transfer">Transfer</option>
+        </select>
+      </div>
+    </section>
+    <div class="diagnostics-grid">
+      <section class="diagnostics-pane" aria-label="Connection and stream data">
+        <h3>Connection &amp; data</h3><dl id="diagnostics-values"></dl>
+      </section>
+      <section class="diagnostics-pane" aria-label="Event log">
+        <h3>Event log <span>last 250 lines</span></h3><pre id="log-tail">Loading log…</pre>
+        <div class="log-folder-action"><button id="open-log-folder" type="button">Open log folder</button><span id="log-folder-result" role="status"></span></div>
+      </section>
+    </div>
+    <div class="diagnostics-help">D / Esc — close · full log: <code>.private/logs/dashboard.log</code></div>
+  </aside>
+</main>
+</body>
+</html>
