@@ -25,8 +25,8 @@ Simple focuses on Active / Next and larger timers.
 
 ## Installation
 
-1. Download **DPD_v0.5.9_Plugin.zip** from [Releases](https://github.com/viavisionpro/DPD-Disguise-Playback-Dashboard/releases/latest).
-2. Extract the **DPD-0.5.9** folder into your project's **Plugins** folder. When
+1. Download **DPD_v0.5.10_Plugin.zip** from [Releases](https://github.com/viavisionpro/DPD-Disguise-Playback-Dashboard/releases/latest).
+2. Extract the **DPD-0.5.10** folder into your project's **Plugins** folder. When
    updating, close DPD and remove its previous folder from Plugins first.
 3. Open the project and choose **DPD - Plugin** from Designer's **Plugins** menu.
 

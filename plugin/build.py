@@ -10,14 +10,14 @@ from pathlib import Path
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parent
-VERSION = '0.5.9'
+VERSION = '0.5.10'
 FILES = (
-    'index.html', 'advanced.html', 'simple.html', 'compact.html', 'diagnostics.html',
-    'compact.css', 'diagnostics.css', 'dashboard.css', 'simple.css', 'setup.css',
-    'launch.js', 'python-data.js', 'preferences.js', 'dashboard-motion.js', 'state.js', 'designer-client.js',
-    'demo.js', 'demo.json', 'config.json', 'properties.json', 'd3plugin.json', 'icon.svg',
-    'favicon.ico', 'LICENSE', 'README.txt', 'vue/app.js', 'vue/VUE-LICENSE.txt',
-    'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png',
+    'index.html', 'views/advanced.html', 'views/simple.html', 'views/compact.html', 'views/diagnostics.html',
+    'assets/css/compact.css', 'assets/css/diagnostics.css', 'assets/css/dashboard.css', 'assets/css/simple.css', 'assets/css/setup.css',
+    'assets/js/launch.js', 'assets/js/python-data.js', 'assets/js/preferences.js', 'assets/js/dashboard-motion.js', 'assets/js/state.js', 'assets/js/designer-client.js',
+    'assets/js/demo.js', 'data/demo.json', 'data/config.json', 'data/properties.json', 'd3plugin.json', 'icon.svg',
+    'assets/icons/favicon.ico', 'docs/LICENSE', 'README.txt', 'assets/js/app.js', 'docs/VUE-LICENSE.txt',
+    'assets/icons/favicon.svg', 'assets/icons/favicon-32.png', 'assets/icons/apple-touch-icon.png',
 )
 
 
@@ -27,7 +27,7 @@ def compile_frontend():
     if not vite.is_file():
         raise ValueError('Install development dependencies first: cd plugin/frontend && npm ci')
     subprocess.run([os.environ.get('DPD_NODE', 'node'), str(vite), 'build'], cwd=frontend, check=True)
-    shutil.copyfile(frontend / 'node_modules/vue/LICENSE', ROOT / 'DPD/vue/VUE-LICENSE.txt')
+    shutil.copyfile(frontend / 'node_modules/vue/LICENSE', ROOT / 'DPD/docs/VUE-LICENSE.txt')
 
 
 

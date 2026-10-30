@@ -1,5 +1,5 @@
 {
-  "_README": "DPD Plugin 0.5.9 for Designer r31+. Install in project/Plugins/DPD-0.5.9. Connection and transports are detected automatically. No JSON edits are required.",
+  "_README": "DPD Plugin 0.5.10 for Designer r31+. Install in project/Plugins/DPD-0.5.10. Connection and transports are detected automatically. No JSON edits are required.",
   "designer": {
     "_help_host": "Legacy default. Native setup uses the Designer-supplied director parameter or the HTTP page address; no IP editing is required.",
     "host": "127.0.0.1",

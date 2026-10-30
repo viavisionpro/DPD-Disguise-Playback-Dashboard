@@ -4,14 +4,14 @@ import {colourProbeScript,colourProbeTarget,colourSubscriptions,decorateColours}
 import {mapBridge} from './presenter.js';
 import {diagnosticRows} from './diagnostics-model.js';
 import {saveLog,copyLog,AutoLog} from './log-export.js';
-export const VERSION='0.5.9';
+export const VERSION='0.5.10';
 export function useDashboard(view,context){
  const fallback=new window.DPDState.DashboardStore({designer:{host:''},timelines:{main:{transport:'—',max_active_layers:3},aux:{transport:'—',max_active_layers:1}}});
  const state=shallowRef(fallback.snapshot()),pending=shallowRef(null),countdown=ref({text:'--:--',source:'NO ACTIVE MEDIA',stale:true}),clock=ref({time:'--:--',date:'—'}),notice=ref(''),diagnosticsOpen=ref(false),logStatus=ref({path:'',error:''});
  let colourProbeStarted=false,colourProbeAttempt=0,colourCapability={phase:'waiting',reason:'Waiting for a layer and track UID'};
  let client=null,disposed=false,rendering=false,timer=null,clockTimer=null;
  const startup=[],smooth=new CountdownClock(),requests=new Set();
- const links=Object.fromEntries(['advanced','simple','compact'].map(name=>{const url=new URL(name+'.html',location.href);url.search=location.search;url.searchParams.delete('view');return [name,url.href];}));
+ const links=Object.fromEntries(['advanced','simple','compact'].map(name=>{const url=new URL('views/'+name+'.html',document.baseURI);url.search=location.search;url.searchParams.delete('view');return [name,url.href];}));
  function log(level,message,detail){if(client)client.log(level,message,detail);else startup.push([level,message,detail]);}
  function logText(){return ['DPD Plugin '+VERSION,'Page: '+location.href,'Context: '+context+'; framed: '+(window.self!==window.top),'User agent: '+navigator.userAgent,'UI: '+JSON.stringify(uiMetrics()),client?.logTail(1000)||startup.map(row=>row.map(value=>typeof value==='string'?value:JSON.stringify(value)).join(' ')).join('\n')].join('\n')+'\n';}
  async function json(url,options={}){
@@ -103,11 +103,11 @@ export function useDashboard(view,context){
  async function start(){
   timer=setInterval(update,100);clockTimer=setInterval(tickCountdown,50);await update();
   try{
-   const [config,properties]=await Promise.all(['config.json','properties.json'].map(name=>json(new URL(name,location.href).href)));
+   const [config,properties]=await Promise.all(['config.json','properties.json'].map(name=>json(new URL('data/'+name,document.baseURI).href)));
    if(disposed)return;
    client=markRaw(new window.DPDDesigner.NativeClient(config,properties,{selectTransports:chooseTransports,preferences:true}));
    startup.forEach(args=>client.log(...args));client.log('INFO','DPD Vue '+VERSION+' starting',{page:location.href,context,framed:window.self!==window.top,userAgent:navigator.userAgent});
-   if(new URLSearchParams(location.search).get('demo')==='1'||config.demo===true){const demo=await json(new URL('demo.json',location.href).href);if(disposed)return;window.DPDDemo.start(client,demo);}else {if(context==='designer'&&view==='compact')autoLog.start();await client.start();}
+   if(new URLSearchParams(location.search).get('demo')==='1'||config.demo===true){const demo=await json(new URL('data/demo.json',document.baseURI).href);if(disposed)return;window.DPDDemo.start(client,demo);}else {if(context==='designer'&&view==='compact')autoLog.start();await client.start();}
   }catch(error){if(disposed)return;(client?.store||fallback).set_connection(false,'error','',String(error));log('ERROR','Plugin initialization failed',String(error));}
  }
  function keydown(event){if(event.target.closest?.('input,textarea,select,[contenteditable="true"]'))return;if(event.key.toLowerCase()==='d'){event.preventDefault();openDiagnostics();}}

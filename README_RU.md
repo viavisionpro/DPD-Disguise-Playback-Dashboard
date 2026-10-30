@@ -26,8 +26,8 @@ Simple оставляет Active / Next и более крупные тайме�
 
 ## Установка
 
-1. Скачайте **DPD_v0.5.9_Plugin.zip** из [Releases](https://github.com/viavisionpro/DPD-Disguise-Playback-Dashboard/releases/latest).
-2. Распакуйте папку **DPD-0.5.9** в **Plugins** проекта. При обновлении сначала
+1. Скачайте **DPD_v0.5.10_Plugin.zip** из [Releases](https://github.com/viavisionpro/DPD-Disguise-Playback-Dashboard/releases/latest).
+2. Распакуйте папку **DPD-0.5.10** в **Plugins** проекта. При обновлении сначала
    закройте DPD и уберите его предыдущую папку из Plugins.
 3. Откройте проект и выберите **DPD - Plugin** в меню **Plugins** Designer.
 
