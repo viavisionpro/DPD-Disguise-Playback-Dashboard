@@ -1,0 +1,19 @@
+html[data-view=diagnostics],html[data-view=diagnostics] body,html[data-view=diagnostics] #app{margin:0;width:100%;height:100%;background:#2d2d2d;color:#eee;font:12px Arial,sans-serif;color-scheme:dark}
+.compact-diagnostics{box-sizing:border-box;display:flex;flex-direction:column;height:100%;min-width:0;min-height:0;background:#2d2d2d;color:#eee;font:12px Arial,sans-serif}
+.compact-diagnostics *{box-sizing:border-box}.compact-diagnostics[data-embedded]{position:fixed;z-index:40;inset:6px;height:auto;border:1px solid #777}
+.compact-diagnostics .toolbar{display:flex;align-items:center;gap:8px;min-height:38px;flex:none;padding:6px 8px;background:#333;border-bottom:1px solid #505050;flex-wrap:wrap}
+.compact-diagnostics .handoff-setting{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.compact-diagnostics label{color:#bbb;white-space:nowrap}
+.compact-diagnostics select,.compact-diagnostics button{height:24px;padding:0 7px;border:1px solid #666;border-radius:0;background:#414141;color:#eee;font:12px Arial,sans-serif}
+.compact-diagnostics #handoff-animation{width:92px;flex:none}.compact-diagnostics #main-transport-choice{width:126px;flex:none}.compact-diagnostics #secondary-transport-choice{width:126px;flex:none}
+#diagnostics .divider{height:18px;width:1px;background:#666;margin:0 3px;flex:none}.compact-diagnostics .toolbar>button{margin-left:auto}.compact-diagnostics button{white-space:nowrap;cursor:pointer}.compact-diagnostics button:hover{background:#555}.compact-diagnostics :disabled{opacity:.6;cursor:default}
+.compact-diagnostics .connection-strip{height:26px;flex:none;display:flex;align-items:center;gap:8px;padding:0 8px;border-bottom:1px solid #505050;color:#bbb;font-size:11px}
+.compact-diagnostics #diagnostic-status{color:#b9cfbf}.compact-diagnostics #diagnostic-status.offline{color:#ffb0a0}.compact-diagnostics #diagnostic-updated{margin-left:auto}
+#diagnostic-action-result{padding:6px 8px;color:#ffc3b5;background:#42332e;flex:none}#diagnostic-action-result[hidden]{display:none}
+.compact-diagnostics .diagnostics-grid{display:grid;grid-template-columns:minmax(240px,40%) minmax(0,1fr);flex:1;min-height:0}.compact-diagnostics .diagnostics-pane{display:flex;flex-direction:column;min-width:0;min-height:0}.compact-diagnostics .diagnostics-pane:first-child{border-right:1px solid #555}
+.compact-diagnostics h3{height:24px;flex:none;display:flex;justify-content:space-between;align-items:center;margin:0;padding:0 8px;background:#383838;border-bottom:1px solid #505050;font-size:12px;font-weight:400}.compact-diagnostics h3 span{font-size:10px;color:#bbb}
+.compact-diagnostics dl{margin:0;padding:4px 0;display:grid;grid-template-columns:50% minmax(0,1fr);grid-auto-rows:max-content;align-content:start;overflow:auto;flex:1;min-height:0}.compact-diagnostics dt,.compact-diagnostics dd{margin:0;min-width:0;min-height:22px;padding:2px 8px;border-bottom:1px solid #383838;line-height:16px;overflow-wrap:anywhere}.compact-diagnostics dt{color:#bbb}.compact-diagnostics dd{color:#eee}
+.compact-diagnostics pre{margin:0;padding:7px 8px;flex:1;min-height:0;overflow:auto;background:#282828;color:#c9c9c9;font:11px/18px Consolas,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.compact-diagnostics .diagnostics-footer{min-height:26px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 8px;background:#333;border-top:1px solid #505050;color:#bbb;font-size:10px;overflow-wrap:anywhere}.compact-diagnostics #log-folder-result{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.compact-diagnostics *{scrollbar-width:thin;scrollbar-color:#707070 #333}.compact-diagnostics ::selection{background:#555;color:#fff}.compact-diagnostics :focus-visible{outline:1px solid #ddd;outline-offset:2px}
+
+.compact-diagnostics dl,.compact-diagnostics pre{overscroll-behavior:contain;overflow-anchor:none;touch-action:pan-y}

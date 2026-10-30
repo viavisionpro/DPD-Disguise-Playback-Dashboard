@@ -1,10 +1,1 @@
-Disguise Playback Dashboard
-Version 0.4.13
-Release date: 2026-10-23
-
-Operator package: DPD_v0.4.13_Runtime.zip
-Launchers: Windows/ and macOS/ — INSTALL, DEMO, START, WINDOW.
-Instructions: README.md (English), README_RU.md (Russian).
-Release history: CHANGELOG.md.
-License: GPL-3.0-only.
-Copyright (C) 2026 Vladimir Zakharov — https://viavision.pro
+0.5.9

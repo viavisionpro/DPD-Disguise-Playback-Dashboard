@@ -1,0 +1,31 @@
+<script setup>
+import {ref,shallowRef,onMounted,onBeforeUnmount,nextTick} from 'vue';
+const props=defineProps({bridge:Object,variant:{type:String,default:'compact'},embedded:Boolean,target:Object});
+const snapshot=shallowRef(null),failure=ref(''),result=ref(''),busy=ref(false),main=ref(''),secondary=ref(''),animation=ref('lift'),log=ref(''),logNode=ref(null),logBusy=ref(false);
+let timer=null,interactingUntil=0;
+function interact(){interactingUntil=performance.now()+1500;}
+function scrollPane(event){interact();const node=event.currentTarget;node.scrollTop+=event.deltaY*(event.deltaMode===1?18:event.deltaMode===2?node.clientHeight:1);}
+const text=value=>value===null||value===undefined||value===''?'—':String(value);
+function close(){props.bridge?.close();}
+async function refresh(){
+ try{
+  if(!props.bridge||props.bridge.isAlive?.()===false)throw Error('Open Diagnostics from a running DPD dashboard.');
+  const previous=logNode.value,follow=performance.now()>interactingUntil&&(!previous||previous.scrollHeight-previous.clientHeight-previous.scrollTop<32);
+  snapshot.value=props.bridge.snapshot();failure.value='';if(!busy.value){main.value=snapshot.value.selection.main;secondary.value=snapshot.value.selection.aux;animation.value=snapshot.value.animation;}
+  log.value=snapshot.value.log;await nextTick();if(logNode.value&&performance.now()>interactingUntil&&follow)logNode.value.scrollTop=logNode.value.scrollHeight;
+ }catch(error){failure.value=String(error.message||error);}
+}
+async function choose(kind,event){busy.value=true;result.value='';try{await props.bridge[kind](event.target.value);}catch(error){result.value=String(error.message||error);}finally{busy.value=false;await refresh();}}
+async function save(){logBusy.value=true;result.value='';try{const saved=await props.bridge.exportLog(props.target||window);result.value='Download requested: '+saved.filename;}catch(error){result.value='Save failed: '+String(error.message||error);}finally{logBusy.value=false;}}
+async function copy(){try{await props.bridge.copyLog(props.target||window);result.value='Log copied.';}catch(error){result.value=String(error.message||error);}}
+function keydown(event){const editing=event.target.closest?.('input,textarea,select,[contenteditable="true"]');if(event.key==='Escape'||!editing&&event.key.toLowerCase()==='d'){event.preventDefault();event.stopImmediatePropagation();close();}}
+onMounted(()=>{refresh();timer=setInterval(refresh,1000);(props.target||window).document.addEventListener('keydown',keydown,true);});onBeforeUnmount(()=>{clearInterval(timer);(props.target||window).document.removeEventListener('keydown',keydown,true);});
+</script>
+<template><section id="diagnostics" role="dialog" aria-label="Connection and data diagnostics" :class="variant==='full'?'diagnostics open':'compact-diagnostics'" :data-variant="variant" :data-embedded="embedded||undefined">
+<header v-if="variant==='full'" class="diagnostics-title"><div><div class="diagnostics-kicker">DIAGNOSTICS</div><h2>Connection &amp; data streams</h2></div><button id="diagnostics-close" type="button" aria-label="Close" @click="close">×</button></header>
+<div :class="variant==='full'?'handoff-controls':'toolbar'"><div class="handoff-setting"><label for="handoff-animation">Animation</label><select id="handoff-animation" :value="animation" :disabled="!snapshot" @change="bridge.setAnimation($event.target.value);refresh()"><option value="off">Off</option><option value="fade">Soft fade</option><option value="lift">Lift</option><option value="accent">Accent</option><option value="transfer">Transfer</option></select><span class="divider" aria-hidden="true"></span><label for="main-transport-choice">Main transport</label><select id="main-transport-choice" :value="main" :disabled="busy||!snapshot?.state.status.connected||snapshot?.selection.demo||snapshot?.selection.list.length<2" @change="choose('selectMain',$event)"><option v-for="item in snapshot?.selection.list||[]" :key="item.id" :value="item.id">{{item.name}}</option></select><template v-if="snapshot?.selection.list.length>2"><label for="secondary-transport-choice">Secondary</label><select id="secondary-transport-choice" :value="secondary" :disabled="busy||!snapshot?.state.status.connected" @change="choose('selectSecondary',$event)"><option value="">None</option><template v-for="item in snapshot.selection.list" :key="item.id"><option v-if="item.id!==main" :value="item.id">{{item.name}}</option></template></select></template></div><button v-if="variant==='compact'" id="diagnostics-close" type="button" @click="close">Close</button></div>
+<div v-if="variant==='compact'" class="connection-strip"><span id="diagnostic-status" :class="{offline:!snapshot?.state.status.connected}">{{snapshot?.state.status.connected?'LIVE':'OFFLINE'}}</span><span id="diagnostic-director">{{snapshot?.state.status.directorName||snapshot?.state.status.directorHost||'—'}}</span><span id="diagnostic-updated">{{snapshot?.state.status.lastUpdate?new Date(snapshot.state.status.lastUpdate*1000).toLocaleTimeString():'No update yet'}}</span></div>
+<div id="diagnostic-action-result" role="status" aria-live="polite" :hidden="!result &amp;&amp; !failure &amp;&amp; !snapshot?.logStatus?.error">{{failure||result||snapshot?.logStatus?.error}}</div>
+<div class="diagnostics-grid"><section class="diagnostics-pane"><h3>Connection &amp; data</h3><dl id="diagnostics-values" @wheel.stop.prevent="scrollPane" @pointerdown="interact"><template v-for="([term,value],index) in snapshot?.rows||[]" :key="term+'-'+index"><dt>{{term}}</dt><dd>{{text(value)}}</dd></template></dl></section><section class="diagnostics-pane"><h3>Event log <span>last 1,000 lines</span></h3><pre id="log-tail" ref="logNode" @wheel.stop.prevent="scrollPane" @pointerdown="interact">{{log||failure||'Waiting for dashboard…'}}</pre><div v-if="variant==='full'" class="log-folder-action"><button id="copy-log" :disabled="!snapshot" @click="copy">Copy log</button><button id="save-log" :disabled="!snapshot||logBusy" @click="save">Save log</button></div></section></div>
+<div :class="variant==='full'?'diagnostics-help':'diagnostics-footer'"><span>D / Esc — close diagnostics</span><span id="log-folder-result" role="status">{{snapshot?.logStatus?.path||(variant==='compact'?'Automatic log: waiting for Designer…':'')}}</span></div>
+</section></template>

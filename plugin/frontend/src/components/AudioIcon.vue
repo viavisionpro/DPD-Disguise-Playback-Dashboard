@@ -1,0 +1,2 @@
+<template><span class="audio-indicator" role="img" aria-label="Embedded audio track" title="This file has embedded audio. This does not indicate mute, volume or output state."><svg class="speaker" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8a6 6 0 0 1 0 8M19 5a10 10 0 0 1 0 14"/></svg><span v-if="label">AUDIO</span></span></template>
+<script setup>defineProps({label:Boolean})</script>

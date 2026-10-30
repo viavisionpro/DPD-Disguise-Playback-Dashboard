@@ -1,0 +1,566 @@
+{
+  "setup": [
+    {
+      "op": "set_connection",
+      "args": [
+        true,
+        "demo",
+        "DEMO-DIRECTOR"
+      ]
+    },
+    {
+      "op": "update_project",
+      "args": [
+        {
+          "projectPath": "C:/Disguise/Projects/Playback Dashboard Demo",
+          "version": {
+            "major": 34,
+            "minor": 0,
+            "hotfix": 0
+          }
+        }
+      ]
+    },
+    {
+      "op": "update_annotations",
+      "args": [
+        "main",
+        {
+          "annotations": {
+            "sections": [
+              {
+                "time": 0.0,
+                "index": "1"
+              },
+              {
+                "time": 24.0,
+                "index": "2"
+              },
+              {
+                "time": 54.0,
+                "index": "3"
+              },
+              {
+                "time": 84.0,
+                "index": "4"
+              }
+            ],
+            "notes": [
+              {
+                "time": 0.0,
+                "text": "OPENING"
+              },
+              {
+                "time": 24.0,
+                "text": "PRODUCT REVEAL"
+              },
+              {
+                "time": 54.0,
+                "text": "SPEAKER WALK-IN"
+              },
+              {
+                "time": 84.0,
+                "text": "FINALE"
+              }
+            ],
+            "tags": [
+              {
+                "time": 0.0,
+                "type": "TC",
+                "value": "10:00:00:00"
+              },
+              {
+                "time": 0.0,
+                "type": "MIDI",
+                "value": "1.60"
+              },
+              {
+                "time": 0.0,
+                "type": "CUE",
+                "value": "1.1"
+              },
+              {
+                "time": 24.0,
+                "type": "TC",
+                "value": "10:00:24:00"
+              },
+              {
+                "time": 24.0,
+                "type": "MIDI",
+                "value": "1.61"
+              },
+              {
+                "time": 24.0,
+                "type": "CUE",
+                "value": "1.2"
+              },
+              {
+                "time": 54.0,
+                "type": "TC",
+                "value": "10:00:54:00"
+              },
+              {
+                "time": 54.0,
+                "type": "MIDI",
+                "value": "1.62"
+              },
+              {
+                "time": 54.0,
+                "type": "CUE",
+                "value": "1.3"
+              },
+              {
+                "time": 84.0,
+                "type": "TC",
+                "value": "10:00:24:00"
+              },
+              {
+                "time": 84.0,
+                "type": "MIDI",
+                "value": "1.63"
+              },
+              {
+                "time": 84.0,
+                "type": "CUE",
+                "value": "1.4"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "op": "update_annotations",
+      "args": [
+        "aux",
+        {
+          "annotations": {
+            "sections": [
+              {
+                "time": 0,
+                "index": "S"
+              }
+            ],
+            "notes": [
+              {
+                "time": 0,
+                "text": "COMPANY LOGO"
+              }
+            ],
+            "tags": [
+              {
+                "time": 0,
+                "type": "CUE",
+                "value": "2.1"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "op": "update_value",
+      "args": [
+        "media_schedule",
+        [
+          {
+            "mediaName": "00_opening_ident.mov",
+            "trackName": "training",
+            "trackUid": 100,
+            "layerName": "Opening Ident",
+            "layerUid": 1000,
+            "effectiveStartBeat": 0.0,
+            "effectiveEndBeat": 24.0,
+            "effectiveStartSec": 0.0,
+            "effectiveEndSec": 24.0,
+            "mediaResource": {
+              "uid": "10000",
+              "path": "objects/videoclip/00_opening_ident.mov.apx",
+              "type": "VideoClip"
+            }
+          },
+          {
+            "mediaName": "01_product_background.mov",
+            "trackName": "training",
+            "trackUid": 100,
+            "layerName": "LED Background",
+            "layerUid": 1001,
+            "effectiveStartBeat": 24.0,
+            "effectiveEndBeat": 54.0,
+            "effectiveStartSec": 24.0,
+            "effectiveEndSec": 54.0,
+            "mediaResource": {
+              "uid": "10001",
+              "path": "objects/videoclip/01_product_background.mov.apx",
+              "type": "VideoClip"
+            }
+          },
+          {
+            "mediaName": "01_product_alpha_overlay_v12.mov",
+            "trackName": "training",
+            "trackUid": 100,
+            "layerName": "Product Overlay",
+            "layerUid": 1002,
+            "effectiveStartBeat": 24.0,
+            "effectiveEndBeat": 54.0,
+            "effectiveStartSec": 24.0,
+            "effectiveEndSec": 54.0,
+            "mediaResource": {
+              "uid": "10002",
+              "path": "objects/videoclip/01_product_alpha_overlay_v12.mov.apx",
+              "type": "VideoClip"
+            }
+          },
+          {
+            "mediaName": "01_particles_loop.mov",
+            "trackName": "training",
+            "trackUid": 100,
+            "layerName": "Particles",
+            "layerUid": 1003,
+            "effectiveStartBeat": 24.0,
+            "effectiveEndBeat": 54.0,
+            "effectiveStartSec": 24.0,
+            "effectiveEndSec": 54.0,
+            "mediaResource": {
+              "uid": "10003",
+              "path": "objects/videoclip/01_particles_loop.mov.apx",
+              "type": "VideoClip"
+            }
+          },
+          {
+            "mediaName": "02_speaker_walkin.mov",
+            "trackName": "training",
+            "trackUid": 100,
+            "layerName": "Speaker Walk-in",
+            "layerUid": 1004,
+            "effectiveStartBeat": 54.0,
+            "effectiveEndBeat": 84.0,
+            "effectiveStartSec": 54.0,
+            "effectiveEndSec": 84.0,
+            "mediaResource": {
+              "uid": "10004",
+              "path": "objects/videoclip/02_speaker_walkin.mov.apx",
+              "type": "VideoClip"
+            }
+          },
+          {
+            "mediaName": "03_finale.mov",
+            "trackName": "training",
+            "trackUid": 100,
+            "layerName": "Finale",
+            "layerUid": 1005,
+            "effectiveStartBeat": 84.0,
+            "effectiveEndBeat": 110.0,
+            "effectiveStartSec": 84.0,
+            "effectiveEndSec": 110.0,
+            "mediaResource": {
+              "uid": "10005",
+              "path": "objects/videoclip/03_finale.mov.apx",
+              "type": "VideoClip"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "op": "update_value",
+      "args": [
+        "media_audio",
+        [
+          {
+            "mediaResource": {
+              "uid": "10000",
+              "path": "objects/videoclip/00_opening_ident.mov.apx",
+              "type": "VideoClip"
+            },
+            "hasAudio": true
+          },
+          {
+            "mediaResource": {
+              "uid": "10001",
+              "path": "objects/videoclip/01_product_background.mov.apx",
+              "type": "VideoClip"
+            },
+            "hasAudio": true
+          },
+          {
+            "mediaResource": {
+              "uid": "10002",
+              "path": "objects/videoclip/01_product_alpha_overlay_v12.mov.apx",
+              "type": "VideoClip"
+            },
+            "hasAudio": false
+          },
+          {
+            "mediaResource": {
+              "uid": "10003",
+              "path": "objects/videoclip/01_particles_loop.mov.apx",
+              "type": "VideoClip"
+            },
+            "hasAudio": false
+          },
+          {
+            "mediaResource": {
+              "uid": "10004",
+              "path": "objects/videoclip/02_speaker_walkin.mov.apx",
+              "type": "VideoClip"
+            },
+            "hasAudio": true
+          },
+          {
+            "mediaResource": {
+              "uid": "10005",
+              "path": "objects/videoclip/03_finale.mov.apx",
+              "type": "VideoClip"
+            },
+            "hasAudio": true
+          }
+        ]
+      ]
+    },
+    {
+      "op": "update_value",
+      "args": [
+        "preview_brightness",
+        [
+          {
+            "mediaResource": {
+              "uid": "10000",
+              "path": "objects/videoclip/00_opening_ident.mov.apx",
+              "type": "VideoClip"
+            },
+            "trackResource": {
+              "uid": 100
+            },
+            "layerResource": {
+              "uid": 1000
+            },
+            "sampleBeat": 0.0,
+            "brightness": 1.0,
+            "expressionActive": false,
+            "sockpuppetControlled": false,
+            "externallyControlled": false
+          },
+          {
+            "mediaResource": {
+              "uid": "10001",
+              "path": "objects/videoclip/01_product_background.mov.apx",
+              "type": "VideoClip"
+            },
+            "trackResource": {
+              "uid": 100
+            },
+            "layerResource": {
+              "uid": 1001
+            },
+            "sampleBeat": 24.0,
+            "brightness": 1.0,
+            "expressionActive": false,
+            "sockpuppetControlled": false,
+            "externallyControlled": false
+          },
+          {
+            "mediaResource": {
+              "uid": "10002",
+              "path": "objects/videoclip/01_product_alpha_overlay_v12.mov.apx",
+              "type": "VideoClip"
+            },
+            "trackResource": {
+              "uid": 100
+            },
+            "layerResource": {
+              "uid": 1002
+            },
+            "sampleBeat": 24.0,
+            "brightness": 1.0,
+            "expressionActive": false,
+            "sockpuppetControlled": false,
+            "externallyControlled": false
+          },
+          {
+            "mediaResource": {
+              "uid": "10003",
+              "path": "objects/videoclip/01_particles_loop.mov.apx",
+              "type": "VideoClip"
+            },
+            "trackResource": {
+              "uid": 100
+            },
+            "layerResource": {
+              "uid": 1003
+            },
+            "sampleBeat": 24.0,
+            "brightness": 1.0,
+            "expressionActive": false,
+            "sockpuppetControlled": false,
+            "externallyControlled": false
+          },
+          {
+            "mediaResource": {
+              "uid": "10004",
+              "path": "objects/videoclip/02_speaker_walkin.mov.apx",
+              "type": "VideoClip"
+            },
+            "trackResource": {
+              "uid": 100
+            },
+            "layerResource": {
+              "uid": 1004
+            },
+            "sampleBeat": 54.0,
+            "brightness": 0.75,
+            "expressionActive": false,
+            "sockpuppetControlled": false,
+            "externallyControlled": false
+          },
+          {
+            "mediaResource": {
+              "uid": "10005",
+              "path": "objects/videoclip/03_finale.mov.apx",
+              "type": "VideoClip"
+            },
+            "trackResource": {
+              "uid": 100
+            },
+            "layerResource": {
+              "uid": 1005
+            },
+            "sampleBeat": 84.0,
+            "brightness": 1.0,
+            "expressionActive": false,
+            "sockpuppetControlled": false,
+            "externallyControlled": false
+          }
+        ]
+      ]
+    },
+    {
+      "op": "update_value",
+      "args": [
+        "media_metadata",
+        [
+          {
+            "mediaResource": {
+              "uid": "10000",
+              "path": "objects/videoclip/00_opening_ident.mov.apx",
+              "type": "VideoClip"
+            },
+            "durationSeconds": 24.0,
+            "durationTimecode": "00:00:24:00",
+            "durationFps": 25
+          },
+          {
+            "mediaResource": {
+              "uid": "10001",
+              "path": "objects/videoclip/01_product_background.mov.apx",
+              "type": "VideoClip"
+            },
+            "durationSeconds": 30.0,
+            "durationTimecode": "00:00:30:00",
+            "durationFps": 25
+          },
+          {
+            "mediaResource": {
+              "uid": "10002",
+              "path": "objects/videoclip/01_product_alpha_overlay_v12.mov.apx",
+              "type": "VideoClip"
+            },
+            "durationSeconds": 30.0,
+            "durationTimecode": "00:00:30:00",
+            "durationFps": 25
+          },
+          {
+            "mediaResource": {
+              "uid": "10003",
+              "path": "objects/videoclip/01_particles_loop.mov.apx",
+              "type": "VideoClip"
+            },
+            "durationSeconds": 30.0,
+            "durationTimecode": "00:00:30:00",
+            "durationFps": 25
+          },
+          {
+            "mediaResource": {
+              "uid": "10004",
+              "path": "objects/videoclip/02_speaker_walkin.mov.apx",
+              "type": "VideoClip"
+            },
+            "durationSeconds": 30.0,
+            "durationTimecode": "00:00:30:00",
+            "durationFps": 25
+          },
+          {
+            "mediaResource": {
+              "uid": "10005",
+              "path": "objects/videoclip/03_finale.mov.apx",
+              "type": "VideoClip"
+            },
+            "durationSeconds": 26.0,
+            "durationTimecode": "00:00:26:00",
+            "durationFps": 25
+          }
+        ]
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "index": 0,
+      "startBeat": 0.0,
+      "endBeat": 24.0,
+      "startSec": 0.0,
+      "endSec": 24.0
+    },
+    {
+      "index": 1,
+      "startBeat": 24.0,
+      "endBeat": 54.0,
+      "startSec": 24.0,
+      "endSec": 54.0
+    },
+    {
+      "index": 2,
+      "startBeat": 54.0,
+      "endBeat": 84.0,
+      "startSec": 54.0,
+      "endSec": 84.0
+    },
+    {
+      "index": 3,
+      "startBeat": 84.0,
+      "endBeat": 110.0,
+      "startSec": 84.0,
+      "endSec": 110.0
+    }
+  ],
+  "aux": [
+    {
+      "layerName": "Logo still",
+      "layerUid": 1999,
+      "layerStartSec": 0.0,
+      "layerEndSec": 110.0,
+      "mediaName": "company_logo.png",
+      "moduleType": "VideoModule",
+      "layerType": "Video",
+      "atEndPoint": 0,
+      "elapsed": null,
+      "remaining": null,
+      "fps": 25.0,
+      "brightness": 1.0
+    },
+    {
+      "layerName": "Web information",
+      "layerUid": 2000,
+      "layerStartSec": 0.0,
+      "layerEndSec": 110.0,
+      "mediaName": "\u2014",
+      "moduleType": "WebModule",
+      "layerType": "Web",
+      "elapsed": null,
+      "remaining": null,
+      "fps": 50.0,
+      "brightness": 1.0,
+      "blendMode": 0
+    }
+  ]
+}

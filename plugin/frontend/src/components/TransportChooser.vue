@@ -1,0 +1,11 @@
+<script setup>
+import {ref,onMounted,onBeforeUnmount,computed,watch} from 'vue';
+const props=defineProps({request:{type:Object,required:true},variant:{type:String,default:'compact'}});
+const dialog=ref(null),main=ref(''),secondary=ref('');
+watch(main,()=>{if(secondary.value===main.value)secondary.value='';});
+const alternatives=computed(()=>props.request.list.filter(item=>item.id!==main.value));
+const hint=computed(()=>{if(!main.value)return 'Select the main transport to continue.';if(props.request.list.length===2){const item=alternatives.value[0];return 'Secondary: '+item.name+(item.trackName?' / '+item.trackName:'');}return 'Change these roles later in Diagnostics.';});
+function submit(){if(!main.value||secondary.value===main.value)return;props.request.submit({main:main.value,aux:props.request.list.length===2?alternatives.value[0].id:secondary.value||null});}
+onMounted(()=>dialog.value.showModal());onBeforeUnmount(()=>{if(dialog.value?.open)dialog.value.close();});
+</script>
+<template><dialog ref="dialog" class="transport-setup" :class="{'transport-setup-full':variant==='full'}" aria-labelledby="transport-setup-title" @cancel.prevent><form @submit.prevent="submit"><h2 id="transport-setup-title">Which transport should be main?</h2><p>{{request.list.length===2?'Two transports detected. The other will be shown as secondary.':'Choose the main and secondary transports.'}}</p><div class="transport-setup-head"><span>Transport</span><span>Current track</span></div><label v-for="item in request.list" :key="item.id" class="transport-setup-option"><input v-model="main" type="radio" name="main-transport" :value="item.id" required><span :title="item.name">{{item.name}}</span><span class="transport-setup-track">{{item.trackName||'—'}}</span></label><template v-if="request.list.length>2"><label for="setup-secondary">Secondary transport</label><select id="setup-secondary" v-model="secondary"><option value="">None</option><option v-for="item in alternatives" :value="item.id" :key="item.id">{{item.name}}</option></select></template><p class="transport-setup-secondary" aria-live="polite">{{request.error||hint}}</p><div class="transport-setup-actions"><button type="submit" :disabled="!main">Open dashboard</button></div></form><footer>{{request.list.length}} transports · Change later in Diagnostics</footer></dialog></template>
